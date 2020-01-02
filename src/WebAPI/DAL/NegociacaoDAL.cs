@@ -120,7 +120,8 @@ namespace DAL
                     {
                         using (DbCommand command = connection.CreateCommand())
                         {
-                            string sql = " UPDATE CAPA_NEGOCIACAO SET STATUS = '" + (result ? "A" : "C") + "'";
+                            string sql = " UPDATE CAPA_NEGOCIACAO SET STATUS = '" + (result ? "A" : "C") + "',";
+                            sql += (result ? "DT_APROVACAO" : "DT_CANCELAMENTO") + " = '" + DateTime.Today.ToString("dd/MM/yyyy") + "'";
                             sql += "  WHERE NEGOCIACAO_ID = " + negociacaoId;
                             command.CommandText = sql;
                             command.ExecuteNonQuery();

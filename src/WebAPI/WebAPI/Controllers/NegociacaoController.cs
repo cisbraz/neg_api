@@ -8,19 +8,16 @@ namespace WebAPI.Controllers
     [RoutePrefix("api/negociacao")]
     public class NegociacaoController : ApiController
     {   
-        [AcceptVerbs("GET")]
+        [AcceptVerbs("POST")]
         [Route("Liberanegociacoes")]
         //http://localhost:63312/api/negociacao/Liberanegociacoes?negociacaoId={negociacaoId}
-        public String Liberanegociacoes(double negociacaoId)
+        public void Liberanegociacoes(double negociacaoId)
         {
             try
             {                
-                return (new NegociacaoBLL()).ConsultaLiberacao(negociacaoId);  
+                new NegociacaoBLL().ConsultaLiberacao(negociacaoId);  
             }
-            catch(Exception e)
-            {
-                return "Erro ao liberar: "+ e.Message;
-            }            
+            catch { }            
         }
     }
 }
